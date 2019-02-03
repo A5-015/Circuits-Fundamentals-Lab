@@ -89,6 +89,11 @@
 % *** CITATION PACKAGES ***
 %
 %\usepackage{cite}
+\usepackage{capt-of}%%To get the caption
+\usepackage{gensymb}
+\usepackage{graphicx} %package to manage images
+\graphicspath{ {./images/} }
+\usepackage{wrapfig}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of the IEEE. Loading the cite package will
@@ -357,7 +362,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Bare Demo of IEEEtran.cls\\ for IEEE Journals}
+\title{Demonstration of a Voltage Divider With A Variable Resistor}
 %
 %
 % author names and IEEE memberships
@@ -432,9 +437,9 @@ The abstract goes here.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
-\begin{IEEEkeywords}
-IEEE, IEEEtran, journal, \LaTeX, paper, template.
-\end{IEEEkeywords}
+%\begin{IEEEkeywords}
+%IEEE, IEEEtran, journal, \LaTeX, paper, template.
+%\end{IEEEkeywords}
 
 
 
@@ -469,22 +474,54 @@ IEEE, IEEEtran, journal, \LaTeX, paper, template.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
-for IEEE journal papers produced under \LaTeX\ using
-IEEEtran.cls version 1.8b and later.
+\IEEEPARstart{T}\lowercase{he} voltage divider is a simple circuit that provides an output voltage, which is a fixed fraction of its input voltage. Simply, a voltage is applied across a series connection of two resistors and the voltage drop is measured between the first and last resistor (see Figure \ref{fig:first}).\\ 
+
+
+\begingroup
+    \bigskip
+    \centering
+    %width=\columnwidth
+    \includegraphics[scale=0.3]{images/lab1_1.png}
+    \small{
+        \captionof{figure}{A schematic for a voltage divider}
+    }
+    \label{fig:first}
+    \bigskip
+\endgroup
+
+\noindent A potentiometer is a variable resistor used to create an adjustable voltage divider. Depending on its position in the circuit, Equation \ref{eq:voltage} can be used to determine the output voltage.   
+
+\begin{equation}
+Vin = Vin \frac{R\textsubscript{1}}{R\textsubscript{1} + R\textsubscript{2}}
+\label{eq:voltage}
+\end{equation}
+
 % You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-I wish you the best of success.
+% (should never be an issue
+\smallskip
+\section{Experimentation}
 
-\hfill mds
- 
-\hfill August 26, 2015
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+\subsection{Simple Voltage Divider}
+
+Using a multimeter, the resistance of the two provided resistors was measured. $R_1$ was measured to be 1K\ohm, while $R_2$ was measured as 5K\ohm. Two jumper cables were connected from the VIN and ground (GND) of a DC power supply to the appropriate power rails on the breadboard. $R_1$ and $R_2$ were connected in series, with the positive terminal of the multimeter connected in between $R_1$ and $R_2$ and the negative terminal connected to the common ground, thus measuring the voltage drop across $R_1$ relative to ground (see Figure \ref{}).
+
+\begingroup
+    \bigskip
+    \centering
+    %width=\columnwidth
+    \includegraphics[scale=0.3]{images/lab1_1.png}
+    \small{
+        \captionof{figure}{A schematic for a voltage divider}
+    }
+    \label{fig:first}
+    \bigskip
+\endgroup
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
+
+\medskip
 
 \subsubsection{Subsubsection Heading Here}
 Subsubsection text here.
@@ -586,7 +623,7 @@ Subsubsection text here.
 
 
 
-
+\smallskip
 \section{Conclusion}
 The conclusion goes here.
 
@@ -680,17 +717,17 @@ Biography text here.
 \end{IEEEbiography}
 
 % if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
+%\begin{IEEEbiographynophoto}{John Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
 
 % insert where needed to balance the two columns on the last page with
 % biographies
 %\newpage
 
-\begin{IEEEbiographynophoto}{Jane Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
+%\begin{IEEEbiographynophoto}{Jane Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
 
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate
