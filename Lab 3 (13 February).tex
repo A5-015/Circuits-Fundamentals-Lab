@@ -16,6 +16,10 @@
 
 \usepackage{setspace}
 
+\usepackage{hhline}
+
+\usepackage{booktabs}
+
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
@@ -117,7 +121,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this experiment a switch controlled LED circuit was built using a $330 \ohm$ resistor, as a visual indicator for the on/off status for a radio receiver to be implemented later. Calculations were carried out to confirm that the resistor value used was appropriate. A simulation was also run for further confirmation. Finally, the circuit was assembled by soldering components onto a prototype board and testing by applying a 9V source.
+In this experiment, the internal resistance of two different kinds of batteries (Nickel metal-hydride and Alkaline) were calculated by connecting 3 different external loads (5 \ohm, 10 \ohm, 15 \ohm). The voltage drop across the resistors and the open circuit voltage of the battery were measured to calculate the internal resistance of the batteries. Finally, the collected data was fit into a curve and the power dissipated at the internal resistor and external load was compared.
 \end{abstract}
 
 
@@ -130,16 +134,16 @@ In this experiment a switch controlled LED circuit was built using a $330 \ohm$ 
 
 
 \section{Introduction}
-\IEEEPARstart{T}\lowercase{he} purpose of this exercise was to measure the internal resistance of a battery using a simple resistor circuit, compare the power absorbed between the internal resistor ($R_{in}$) and the resistor in the circuit ($R_{ex}$), and describe the relationship between the voltage drop and current load across $R_{ex}$. Comparing the power consumption of the internal resistor to that of the load resistor would emphasize the importance of minimizing internal resistance. 
+\IEEEPARstart{T}\lowercase{he} purpose of this exercise was to measure the internal resistance of a battery using a simple resistor circuit, compare the power absorbed between the internal resistor ($R_{in}$) and the resistor in the circuit ($R_{ex}$), and describe the relationship between the voltage drop and current load across $R_{ex}$. Comparing the power consumption of the internal resistor to that of the load resistor would emphasize the importance of minimizing internal resistance.\\ 
 
-\nonindent In ideal circuit diagrams, it is often assumed that voltage sources provide the voltage they are rated for. Realistically, batteries have an internal resistance, the value for which depends on the type of cell, which has the effect of providing a voltage drop and limiting the current through the circuit. Naturally, a low internal resistance is preferred.
+\noindent In ideal circuit diagrams, it is often assumed that voltage sources provide the voltage they are rated for. Realistically, batteries have an internal resistance, the value for which depends on the type of cell, which has the effect of providing a voltage drop and limiting the current through the circuit. Naturally, a low internal resistance is preferred.
 
 \begingroup
     \medskip
     \centering
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab3_1.png}
-    \captionof{figure}{A schematic for a modular, \\ switch-controlled led circuit}
+    \captionof{figure}{Schematic for a simple circuit with a battery and external resistor}
     \label{fig:first}
     \medskip
 \endgroup
@@ -148,69 +152,203 @@ In this experiment a switch controlled LED circuit was built using a $330 \ohm$ 
 
 
 \smallskip
-\section{Circuit Assembly}
+\section{Circuit Assembly and Measurements}
 
-\noindent The simple schematic was recreated in CAD as shown in Figure \ref{fig:third}. The simulation illustrates the idea of an internal resistor. Assuming no internal resistance for a battery in an ideal circuit, 
+\noindent The simple schematic was recreated in CAD as shown in Figure \ref{fig:third}. The simulation illustrates the idea of an internal resistor. Assuming no internal resistance for a battery in an ideal circuit, the voltage across $R_{ex}$ would have been the voltage supplied by the battery.\\
 
-Following the schematic, components were placed onto a breadboard for initial testing (Figure \ref{fig:third}). Later the working circuit was transferred onto a prototyping board and components were soldered. Two screw terminals were placed at either end of the board to allow for battery cables and radio receiver cables to be fed in and out and be replaced if needed. The slide switch was soldered in the middle of the board; the power cable from the battery terminal was soldered to the common pin, while the power cable leading to the radio receiver was soldered to the terminal 2 pin. Thus, the circuit could be opened by sliding the common pin to connect with the terminal 1 pin.\\
+\noindent The circuit above was recreated using a breadboard, as shown in Figure \ref{fig:second}. Internal resistance in the set-up was assumed to be the equivalent resistance of the battery, the wire, and the screw terminal.
 
 \begingroup
     \medskip
     \centering
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab3_2.png}
-    \captionof{figure}{CAD layout recreating the switch-controlled circuit.}
+    \captionof{figure}{CAD layout recreating the Thevenin circuit}
     \label{fig:third}
     \medskip
 \endgroup
+\\
 
-\noindent A cable was directly connected between the negative terminals on both screw terminals.  The anode of the LED was soldered to the negative terminal on the battery terminal for grounding. One leg of the protective resistor was soldered to the terminal 2 pin of the switch, while the other leg of the resistor was soldered to the cathode of the LED, thus completing the circuit (see Figure \ref{fig:second}).
+\noindent A charged battery was snapped into a battery terminal and its cables were screwed into a screw terminal. The screw terminal was positioned on the breadboard to allow for the external resistor to be in series with the battery. Three resistors (5.1 \ohm, 10.0 \ohm, and 15.1 \ohm) were used for two batteries (alkaline and nickel metal-hydride). First, the open circuit voltage ($V_{oc}$ was measured by applying a multimeter's terminals to the ends of the battery terminal. Next, the voltage drop across $R_{ext}$ was measured by applying the multimeter terminals to the screw terminal (Figure \ref{fig:second}).
 
 \begingroup
     \medskip
     \centering
     %width=\columnwidth
-    \includegraphics[width=\columnwidth]{images/lab2_4.png}
-    \captionof{figure}{Switch-controlled circuit to control LED and any attached system.}
+    \includegraphics[width=\columnwidth]{images/lab3_3.png}
+    \captionof{figure}{A simple Thevenin circuit prototyped on a breadboard}
     \label{fig:second}
     \medskip
 \endgroup
 
 
 \section{Ohm's Law Calculations}
-\noindent The resistance value of the protective resistor is important as it prevents the current from exceeding the maximum specified current for the component. The green LED used was rated for a maximum $30mA$ forward current and 100 $mA$ peak forward current \cite[]{datasheet}. Ohm's law was used to calculate the required resistor values that satisfied the ratings of the LED as shown in Equation \ref{eq:minresistancecalc}.
+
+\noindent The resistance value of the internal resistor is important to know as it contributes to the drop in output voltage as well as limits the current coming out of the battery. The resistor value can be calculated by manipulating Ohm's law.\\ 
+
+\noindnet First, Ohm's law was rewritten to calculate the current flowing through the circuit, made possible because the $V_{ext}$ was measured for each $R_{ext}$ value. Equation \ref{eq:currentcalc} shows the current calculated using a $5.1 \ohm$ resistor and a nickel metal hydride battery (see Figure \ref{fig:fifth}).
 
 \begin{equation}
-R = \frac{V}{I} = \frac{9V}{30mA} = 300\ohm
-\label{eq:minresistancecalc}
+I = \frac{V_{ext}}{R_{ext}} = \frac{1.300V}{5.1\ohm} = 0.255A
+\label{eq:currentcalc}
 \end{equation}
 
-While the calculations imply the use of a $300 \ohm$ resistor for the case of maximum forward current, any resistor value which supplies approximately below $30mA$ (for a reasonably luminescent LED) is appropriate. In this case, a $330 \ohm$ resistor was used as it was the closest resistor value and provided a maximum forward current of $27mA$, which is under the recommended maximum. This decision was confirmed by the simulation (see Figure \ref{fig:fourth}), which shows that using a $330 \ohm$ resistor results in a forward current of $20.9mA$, far less than the recommended $30mA$. The operation of the circuit was also confirmed by soldering the components to a prototype board and supplying $9V$ through the battery terminal resulting in a functional circuit(see Figure \ref{fig:fifth}).
+\noindent Having obtained the current in the circuit, the voltage drop across $R_{int}$ was calculated by finding the difference between $V_{oc}$ and $V_{ext}$. Ohm's law was once again used to find $R_{int}$ as follows:
 
- \begingroup
+\begin{equation}
+R_{int} = \frac{V_{oc}-V_{ext}}{I} = \frac{1.376V-1.300V}{0.255A} = 0.298\ohm
+\label{eq:rintcalc}
+\end{equation}
+
+\noindent Figure \ref{fig:fifth} and figure \ref{fig:sixth} show the calculated results for all 6 trials encompassing the three resistor values and two battery types. 
+
+\begingroup
+    \medskip
+    \centering
+    \def\arraystretch{1.5}
+    \begin{tabular}{lccc}
+    \toprule
+    \textbf{Trial \#} & 1 & 2 & 3 \\
+    \toprule
+    \textbf{V$_{oc}$ (V)} & 1.376 & 1.375 & 1.374 \\
+    \hline
+    \textbf{R$_{ext}$ (\ohm)} & 5.1 & 10.0 & 15.1 \\
+    \hline
+    \textbf{V$_{ext}$ (V)} & 1.300 & 1.331 & 1.347 \\
+    \hline
+    \textbf{I (A)} & 0.255 & 0.133 & 0.089 \\
+    \hline
+    \textbf{R$_{int}$ (\ohm)} & 0.298 & 0.331 & 0.303 \\
+    \hline
+    \textbf{P$_{int}$ (W)} & 0.019 & 0.006 & 0.002 \\
+    \hline
+    \textbf{P$_{Total}$ (W)} & 0.351 & 0.183 & 0.123 \\
+    \hline
+    \textbf{P$_{\% \: lost\: in\: battery}$ (\ohm)} & 5.523 & 3.200 & 1.965 \\
+    \hline
+    \textbf{Average R$_{int}$ (\ohm)} &\multicolumn{3}{c}{0.310} \\
+    \hline
+    \textbf{Average V$_{oc}$ (V)} &\multicolumn{3}{c}{1.375} \\
+    \toprule
+    \end{tabular}
+    \captionof{figure}{Various data points obtained and calculated for Nickel metal-hydride battery}
+    \label{fig:fifth}
+    \medskip
+\endgroup
+
+
+\begingroup
+    \medskip
+    \centering
+    \def\arraystretch{1.5}
+    \begin{tabular}{lccc}
+    \toprule
+    \textbf{Trial \#} & 1 & 2 & 3 \\
+    \toprule
+    \textbf{V$_{oc}$ (V)} & 1.615 & 1.614 & 1.625 \\
+    \hline
+    \textbf{R$_{ext}$ (\ohm)} & 5.1 & 10.0 & 15.1 \\
+    \hline
+    \textbf{V$_{ext}$ (V)} & 1.477 & 1.540 & 1.570 \\
+    \hline
+    \textbf{I (A)} & 0.290 & 0.154 & 0.104 \\
+    \hline
+    \textbf{R$_{int}$ (\ohm)} & 0.477 & 0.481 & 0.529 \\
+    \hline
+    \textbf{P$_{int}$ (W)} & 0.040 & 0.011 & 0.006 \\
+    \hline
+    \textbf{P$_{Total}$ (W)} & 0.468 & 0.249 & 0.169 \\
+    \hline
+    \textbf{P$_{\% \: lost\: in\: battery}$ (\ohm)} & 8.545 & 4.585 & 3.385 \\
+    \hline
+    \textbf{Average R$_{int}$ (\ohm)} &\multicolumn{3}{c}{0.495} \\
+    \hline
+    \textbf{Average V$_{oc}$ (V)} &\multicolumn{3}{c}{1.618} \\
+    \toprule
+    \end{tabular}
+    \captionof{figure}{Various data points obtained and calculated for Alkaline battery}
+    \label{fig:sixth}
+    \medskip
+\endgroup
+
+\section{Analysis and Discussion}\\
+
+\noindent For the nickel metal hydride battery, it was observed that as $R_{ext}$ increased, the power consumption of $R_{int}$ decreased. This is because increasing the load resistor decreases the current flowing through the circuit, causing the power dissipated in the battery to decrease with the following relation:
+
+\begin{equation}
+P = I^{2}R_{int} = (\frac{V_{ext}}{R_{ext}})^2(R_{int})
+\label{eq:powercalc}
+\end{equation}
+
+\noindent As the relation is exponential, it is expected that increasing the load resistor will lead to an exponential decay of power dissipation. Figure \ref{fig:eighth} confirms this relation, as it depicts the percent power dissipated in the battery exponentially decrease as $R_{ext}$ increases. On the other hand, while the absolute power dissipated by the external resistor decreases (see Figure \ref{fig:fifth} and Figure \ref{fig:sixth}), the percentage power dissipated in fact increases for the external resistor and this relation is depicted in Figure \ref{fig:ninth}.\\
+
+\noindent In summary, the power dissipated across both internal and external resistors decreases as the external resistor value is increased. However, the external resistor absorbs a higher percentage of the power. Thus, the rate at which the power dissipation in watts drops for the $R_{int}$ is greater than that of $R_{ext}$.
+
+\begingroup
     \medskip
     \centering
     %width=\columnwidth
-    \includegraphics[scale=0.43]{images/lab2_3.png}
-    \captionof{figure}{Simulation for $330 \ohm$ resistor in the circuit}
-    \label{fig:fourth}
-    \medskip
+    \includegraphics[width = \columnwidth]{images/lab3_graph1_1.png}
+    \captionof{figure}{Percent power dissipated by the internal resistor against the external resistor}
+    \label{fig:eighth}
 \endgroup
 
 \begingroup
     \medskip
     \centering
     %width=\columnwidth
-    \includegraphics[width =\columnwidth]{images/lab2_5.jpg}
-    \captionof{figure}{Final testing of the completed circuit}
-    \label{fig:fifth}
+    \includegraphics[width = \columnwidth]{images/lab3_graph1_2.png}
+    \captionof{figure}{Percent power dissipated by the external resistor against the external resistor}
+    \label{fig:ninth}
     \medskip
 \endgroup
 
+
+\noindent Another relation can be made between current, $I$, and $V_{ext}$. Ohm's law says that the relationship between current and voltage is linear, which is confirmed by Figure \ref{fig:seventh}. Dividing any given current by its corresponding voltage drop provides the resistor value $R_{ext}$.
+
+\begingroup
+    \medskip
+    \centering
+    %width=\columnwidth
+    \includegraphics[width =\columnwidth]{images/lab3_graph2.jpg}
+    \captionof{figure}{Current graphed against the voltage drop across the exterior resistor}
+    \label{fig:seventh}
+    \medskip
+\endgroup
+
+\noindent Interestingly, looking at the equation of the line of best fit in Figure \ref{fig:seventh}, it was observed that the slope is equivalent to that of the internal resistance of the circuit. This relation can be explained by the following derivations: 
+
+\begin{equation}
+V_{oc} = I (R_{int} + R_{ext}) 
+\label{eq:currentcalc}
+\end{equation}
+
+\begin{equation}
+V_{oc} = I R_{int} + I  R_{ext}
+\label{eq:currentcalc}
+\end{equation}
+
+\begin{equation}
+V_{oc} = I R_{int} + V_{ext}
+\label{eq:currentcalc}
+\end{equation}
+
+\begin{equation}
+R_{int} = \frac{V_{oc} - V_{ext}}{I}
+\label{eq:currentcalc}
+\end{equation}
+
+\begin{equation}
+V_{ext} = V_{oc} - I(R_{int})
+\label{eq:currentcalc}
+\end{equation}
+
+
+\noindent More obviously, the y-intercept is equivalent to the $V_{oc}$ of the circuit, which is by definition when the current in the circuit goes to zero. 
+
 \section{Discussion and Conclusion}\\
 
-\noindent A generic power switch for a system (AM radio receiver) was assembled. An LED with a protective resistor was also fitted into the circuit to act as a status indicator. A $300 \ohm$ resistor value was calculated using Ohm's Law assuming peak forward current. The closest resistor value of $330 \ohm$ was used for the circuit, resulting in a forward current of $20.9mA$ and a successful circuit. The lab also acted as an exercise for good soldering practices, such as setting the right temperature and ensuring solder to pad connection, which were critical to the circuit operating when finally assembled. 
-
+\noindent Internal resistance of two different kinds of batteries (Nickel metal-hydride and Alkaline) were calculated. 3 different external loads (5 \ohm, 10 \ohm, 15 \ohm) were used to take the measurements. The voltage drop across the resistors and the open circuit voltage of the battery was used to carryout calculations. Metal-hydride battery was found to have $0.31 \ohm$ and Alkaline was found to have $0.495 \ohm$ of internal resistance. Finally, the collected data was fit into a curve and the power dissipated at the internal resistor and external load was compared. This data can be useful for determining the efficiency of the batteries and better estimating their lifetime. Understanding the internal resistance aids in indicating the battery performance. Furthermore, as the battery heats up, the resistance increases; therefore, internal resistance may also be an indicator of battery temperature.
 
 %\appendices
 %\section{Proof of the First Zonklar Equation}
