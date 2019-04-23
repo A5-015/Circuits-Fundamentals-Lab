@@ -9,6 +9,9 @@
 \graphicspath{ {./images/} }
 \usepackage{wrapfig}
 
+\usepackage{amsmath}
+
+
 \usepackage[style=ieee]{biblatex}
 \DeclareLanguageMapping{english}{english-apa}
 \addbibresource{references.bib}
@@ -18,6 +21,9 @@
 
 \usepackage{hhline}
 
+
+\usepackage{changepage} 
+
 \usepackage{booktabs}
 \usepackage{xcolor}
 
@@ -25,7 +31,7 @@
 
 \renewcommand\theadfont{}
 
-\raggedbottom
+%\raggedbottom
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
@@ -189,7 +195,7 @@ Wire Stripper & 1 \\
 %% RC Circuit %%
 %%%%%%%%%%%%%%%%
 \subsection{RC Circuit}
-\noindent In a RC circuit, capacitor {\color{red}does something something something theory theory Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.}
+\noindent In a RC circuit, capacitors are understood to cause the current to lead the voltage. Moreover, a phasor diagram depicts the voltage drop across a resistor as a real vector and the voltage drop across a capacitor to have an imaginary vector in the negative axis. The sum of these two vectors provides an angle $\phi$, which explains the phase delay between input and output voltages.\\
 
 \begingroup
     \centering
@@ -201,14 +207,14 @@ Wire Stripper & 1 \\
     \medskip
 \endgroup
 
-\noindent Following the schematics above (Figure \ref{fig:circ1}), the circuit was built on a breadboard. 5V p-p AC voltage was applied to the circuit and crocodile grabbers of the oscilloscope were attached to the leg of the capacitor and the common ground of the circuit. $R1$ was selected to be \ohm and the capacitor was selected to be 3.3$uF$. Once the circuit was built as shown in Figure \ref{fig:circ1image}, 5V p-p sinusoidal wave at 1 kHz and 2 kHz was applied. The phase shift difference between the originally supplied sinusoidal wave and the waveform at the leg of the capacitor was measured using the cursor functionality of the oscilloscope. Later, the frequency of the waveform was increased up to 40 kHz to observe the change in the phase shift.
+\noindent Following the schematic above (Figure \ref{fig:circ1}), the circuit was prototyped on a breadboard. To measure the output signal, the positive terminal of the oscilloscope was attached to the leg of the capacitor, while the negative terminal to the common ground of the circuit. $R_1$ was selected to be $1k\ohm$ and the capacitor was selected to be 3.3$uF$. Once the circuit was built (see Figure \ref{fig:circ1image}), 5V p-p sinusoidal waves at 1 kHz, later 2 kHz, were applied. The phase shifts between the original sinusoidal wave and the output waveform, as well  as the magnitudes of each, were measured using the cursor functionality of the oscilloscope. Later, the frequency of the waveform was increased up to 40 kHz to observe the gradual change in the phase shift.
 
 \begingroup
     \centering
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab8_circ1.jpg}
-    \captionof{figure}{Circuit 1}
+    \captionof{figure}{A RC Circuit Prototype}
     \label{fig:circ1image}
     \medskip
 \endgroup
@@ -219,7 +225,7 @@ Wire Stripper & 1 \\
 %% RL Circuit %%
 %%%%%%%%%%%%%%%%
 \subsection{RL Circuit}
-\noindent In a RL circuit, inductor {\color{red}does something something something theory theory Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.} 
+\noindent In a RL circuit, unlike RC circuits, voltage leads the current. Phasor diagrams depict the voltage drop across a resistor as a real vector and the voltage drop across an inductor as an imaginary vector in the positive axis. The sum of these two vectors provides an angle $\theta$, which explains the phase shift between input and output voltages.\\
 
 \begingroup
     \centering
@@ -231,14 +237,18 @@ Wire Stripper & 1 \\
     \medskip
 \endgroup
 
-\noindent Following the schematics provided (Figure \ref{fig:circ2}), the circuit was built on a breadboard. 5V p-p AC voltage was applied to the circuit and crocodile grabbers of the oscilloscope were attached to the leg of the inductor and the common ground of the circuit. One 4.7 $mH$ inductor and one 1K \ohm resistor was used in the circuit. After the circuit was completed as shown in Figure \ref{fig:circ2image}, the magnitude of the voltage and phase difference between the supplied wave and the waveform captured from the leg of the inductor. The measurements were repeated for 1kHz and 2 kHz frequencies.
+\\
+\medskip
+
+
+\noindent The circuit was built following Figure \ref{fig:circ2}. The output signal was similarly measured with one crocodile grabber on the leg of an inductor and another on the common ground. One 4.7 $mH$ inductor and one 1K \ohm resistor were used in the circuit. Once the circuit was built (see Figure \ref{fig:circ2image}), the magnitude of the output voltage and the phase difference between the supplied signal and the output signal were recorded. The measurements were repeated for 1kHz and 2 kHz frequencies. \\
 
 \begingroup
     \centering
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab8_circ2.jpg}
-    \captionof{figure}{Circuit 2}
+    \captionof{figure}{A RL Circuit Prototype}
     \label{fig:circ2image}
     \medskip
 \endgroup
@@ -249,19 +259,26 @@ Wire Stripper & 1 \\
 %% RLC Circuit %%
 %%%%%%%%%%%%%%%%%
 \subsection{RLC Circuit}
-\noindent In a RC circuit, inductor and capacitor {\color{red}does something something something theory theory Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.Lorem ipsum dolor s}
+\noindent In a series RLC circuit, there is no leading or lagging of current and voltage, because the imaginary current components cancel out. However, a lead or lag may or may not exist between the output and input voltage depending on the reactance of the capacitor and inductor. In a case where the reactance of the L and C are equal but opposite vectors, then the imaginary component is cancelled out and output voltage has no difference in phase. 
 
 \begingroup
     \centering
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab8_circuit3.png}
-    \captionof{figure}{Circuit 3}
+    \captionof{figure}{A RLC Circuit Prototype}
     \label{fig:circ3}
     \medskip
 \endgroup
 
-\noindent Finally the last circuit was built on the breadboard by using the provided schematics (Figure \ref{fig:circ3}). One 1K resistor, one 4.7 $mH$ inductor, and one 3.3 $uF$ capacitor was used along the AC wave generator. This time oscilloscope was attached to both inductor's leg and capacitor's leg. Once the circuit was completed (Figure \ref{fig:circ3image}), 5V p-p and 1kHz AC voltage was applied to the circuit and generated waveforms in the circuit were captured. Later, the frequency of the applied voltage was increased until 40 kHz to observe the phase differences in the circuit.
+\\
+\medskip
+
+\noindent The final circuit was built following Figure \ref{fig:circ3}. A 1K resistor, 4.7 $mH$ inductor, and 3.3 $uF$ capacitor were used along with the AC wave generator. In this case, two output voltages were measured. The first output signal was measured by connecting the positive terminal to the leg of the resistor adjacent to the inductor and the negative terminal to the common ground. The second output signal was measured by connecting positive terminal to the leg of the inductor adjacent to the capacitor and the negative terminal to the common ground. AC 5v p-p voltage at a frequency of 1kHz was provided as input voltage to the circuit in Figure \ref{fig:circ3image}. The frequency was also gradually increased by 10Hz and the changes in phase-shift was noted.
+
+\\
+\medskip
+\medskip
 
 \begingroup
     \centering
@@ -277,30 +294,66 @@ Wire Stripper & 1 \\
 
 \section{Results and Discussion}
 
-\noindent All configurations operated as expected and the results of each circuit configuration was recorded in the the tables and the observed wave forms were screenshot. Green lines represents the signal directly coming from the AC function generator and yellow\&purple lines represent the signal captured from legs of the capacitor\&inductor in the oscilloscope screenshots.
+\noindent All configurations operated, albeit far from ideal scenarios, and the results of each circuit configuration were recorded in tables and the observed wave forms were captured. Green lines represents the signal directly coming from the AC function generator and yellow and purple lines represent the signal captured from the reactive components of the circuit.
 
 %%%%%%%%%%%%%%%%
 %% RC Circuit %%
 %%%%%%%%%%%%%%%%
 \subsection{RC Circuit}
-\noindent {\color{red} Some explanation ething theory theory Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.Lorem ipsum } \\
+\noindent Equation \ref{eq:cap_reactance} shows the calculated reactance of the capacitor, assuming a 1kHz signal.
 
-\begingroup
-\bigskip
-    \centering
-    \def\arraystretch{1.5}
-    \begin{tabular}{ccccc}
-        \toprule
-        Frequency (kHz) & Vin (V) & Vout (mV) & \thead{Phase \\ Difference (\degree)}\\
-        \midrule
-        1 & 5 & 254 & 74\\
-        2 & 5 & 150 & 72\\
-        \bottomrule
-    \end{tabular}
-    \captionof{figure}{Tabulation of the measurements for the RC circuit built with 1K\ohm \, resistor and 3.3$uF$ capacitor}
-    \label{fig:rctable}
-\medskip
-\endgroup
+\begin{equation}
+Z_{C} = \frac{1}{2\pi fcj} = \frac{1}{2\pi(1\cdot10^3)(3.3\cdot10^{-6})j} = 0 - 48.25j
+\label{eq:cap_reactance}
+\end{equation}
+\\
+
+\noindent Therefore, the impedance is $1000\ohm - 48.25j\ohm$. When written in polar form, it is $1001.16 \angle-2.76\degree$. The equation \ref{eq:calcRC} depicts the calculations needed to obtain the phase angle of the voltage across the capacitor, $V_{c}$. Simply, the current is obtained by dividing the voltage by the circuit's impedance. The obtained current is then multiplied by the capacitor's reactance to obtain the phase angle of $V_c$.
+
+\begin{equation}
+    \begin{split}
+        V_s & = I \angle \alpha \times Z \angle \beta \\
+        0 & = \alpha - 2.76 \\
+        \alpha & = 2.76
+    \end{split}
+    \label{eq:calcRC}
+\end{equation} \\
+
+\noindent Here, the reactance $0 - 48.25j$ of the capacitor, calculated in Equation \ref{eq:cap_reactance}, was converted into the polar form. This provided the polar angle of the reactance, which was $-90\degree$. This angle value was used in Equation \ref{eq:calcRC2} to calculate the phase difference.
+
+\begin{equation}
+    \begin{split}
+        V_c & = I \angle \alpha \times X \angle -90\degree \\
+            & = 2.76\degree - 90\degree \\
+            & = -87.24\degree
+    \end{split}
+    \label{eq:calcRC2}
+\end{equation} \\
+
+\noindent Calculations (\ref{eq:cap_reactance}, \ref{eq:calcRC}, and \ref{eq:calcRC2}) were repeated for 2 kHz AC source voltage and results were recorded in Table \ref{fig:rctable}.
+
+\small
+    \begingroup
+    \bigskip
+        \centering
+        \def\arraystretch{1.5}
+        \setlength\tabcolsep{3pt}
+            \begin{tabular}{ccccccc}
+                \toprule
+                    \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Vout\\(mV)} & \thead{Calculated \\ Phase\\Difference\\(\degree)} & \thead{Observed \\ Phase \\ Difference\\(\degree)}\\
+                \midrule
+                    1 & 5 & 1000 - 48.25j & 254 & -87.24 & -74\\
+                    2 & 5 & 1000 - 24.13j & 150 & -88.62 & -72\\
+                \bottomrule
+            \end{tabular}
+        \captionof{figure}{Tabulation of the measurements for the RC circuit built with 1K\ohm \, resistor and 3.3$uF$ capacitor}
+        \label{fig:rctable}
+    \medskip
+    \endgroup
+\normalsize
+
+\noindent There was a significant difference between the theoretical and measured phase difference in the RC circuit. The most reasonable explanation is that the capacitor was assumed to behave ideally in the calculations, whereas in practice, its performance was hindered. As seen in Figure \ref{fig:rcosc1} and \ref{fig:rcosc2}, the output signal, in yellow, has a lower voltage than the input voltage; when looking at Figure \ref{fig:rctable}, this decrease in output voltage can explained by the higher impedance caused by the higher input frequency.
+
 
 \begingroup
     \centering
@@ -327,24 +380,61 @@ Wire Stripper & 1 \\
 %% RL Circuit %%
 %%%%%%%%%%%%%%%%
 \subsection{RL Circuit}
-\noindent {\color{red} Some explanation ething theory theory Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.Lorem ipsum } \\
+\noindent Equation \ref{eq:inductor_impedance} calculates the reactance of the inductor with assumption of a 1kHz signal.
 
-\begingroup
-\bigskip
-    \centering
-    \def\arraystretch{1.5}
-    \begin{tabular}{ccccc}
-        \toprule
-        Frequency (kHz) & Vin (V) & Vout (mV) & \thead{Phase \\ Difference (\degree)}\\
-        \midrule
-        1 & 5 & 220 & -40\\
-        2 & 5 & 320 & -50\\
-        \bottomrule
-    \end{tabular}
-    \captionof{figure}{Tabulation of the measurements for the RC circuit built with 1K\ohm \, resistor and 4.7$mH$ inductor}
-    \label{fig:rltable}
-\medskip
-\endgroup
+\begin{equation}
+Z_{L} = 2\pi\cdot fLj = 2\pi \cdot (1\cdot10^3)(4.7\cdot10^-3)(j) = 0 + 20.72j
+\label{eq:inductor_impedance}
+\end{equation} \\
+
+\noindent As before, the impedance of the circuit is then $1000\ohm + 20.72j$, which is equivalent to $1000.21 \angle1.19\degree$. Equation \ref{eq:calcRL} shows the calculations to obtain phase angle of ${V_L}$. Current of the circuit is obtained by dividing voltage by impedance; this current is then multiplied by the inductor's reactance to obtain the phasor angle of ${V_L}$. \\
+
+\begin{equation}
+    \begin{split}
+        V_s & = I \angle \alpha \times Z \angle \beta \\
+        0 & = \alpha + 1.19 \\
+        \alpha & = -1.19
+    \end{split}
+    \label{eq:calcRL}
+\end{equation} \\
+
+\noindent The reactance of the inductor,  $0 + 20.72j$, is once again rewritten in polar form. Converted angle value was used in Equation \ref{eq:calcRL} to calculate the phase difference as shown in Equation \ref{eq:calcRL2}.
+
+\begin{equation}
+    \begin{split}
+        V_c & = I \angle \alpha \times X \angle 90\degree \\
+            & = -1.19\degree + 90\degree \\
+            & = 88.81\degree
+    \end{split}
+    \label{eq:calcRL2}
+\end{equation} \\
+
+\noindent The calculations shown above were repeated for a 2kHz input signal, with all measurements recorded in Table \ref{fig:rltable}.
+
+
+\small
+    \begingroup
+    \bigskip
+        \centering
+        \def\arraystretch{1.5}
+        \setlength\tabcolsep{3pt}
+            \begin{tabular}{ccccccc}
+                \toprule
+                    \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Vout\\(mV)} & \thead{Calculated \\ Phase\\Difference\\(\degree)} & \thead{Observed \\ Phase \\ Difference\\(\degree)}\\
+                \midrule
+                    1 & 5 & 1000 + 20.72j & 220 &  88.81  & 40\\
+                    2 & 5 &               & 320 &     & 50\\
+                \bottomrule
+            \end{tabular}
+        \captionof{figure}{Tabulation of the measurements for the RC circuit built with 1K\ohm \, resistor and 4.7$mH$ inductor}
+        \label{fig:rltable}
+    \medskip
+    \endgroup
+\normalsize
+
+
+
+{\color{red} We need to talk about }
 
 \begingroup
     \centering
@@ -368,10 +458,27 @@ Wire Stripper & 1 \\
 
 
 %%%%%%%%%%%%%%%%%
-%% RCL Circuit %%
+%% RLC Circuit %%
 %%%%%%%%%%%%%%%%%
-\subsection{RCL Circuit}
-\noindent {\color{red} Some explanation ething theory theory Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.Lorem ipsum } \\
+\subsection{RLC Circuit}
+Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit.\\
+
+
+% Z_{RLC} = = 999.83+(-18.67j)
+\begin{equation}
+    \begin{split}
+        Z_{C} & = \frac{1}{2\pi fcj} = \frac{1}{2\pi(1\cdot10^3)(3.3\cdot10^{-6})j} = 0 - 48.25j \\ 
+        Z_{L} & = 2\pi\cdot fLj = 2\pi \cdot (1\cdot10^3)(4.7\cdot10^-3)(j) = 0 + 20.72j \\
+        Z_{R} & = 1000 + 0j \\ 
+        \\
+        Z_{RLC} & = -48.25j + 20.72j + 1000\\
+                & = 1000 - 27.5j
+    \end{split}
+    \label{eq:rlcimpedance}
+\end{equation} \\
+
+\noindent Rewritten in polar form, the equation is equivalent to $1000.17 \angle-1.58\degree$. As seen before, a negative angle implies that the system is capacitive. Therefore, we can infer that the output voltage leads the input voltage, as was in the case of the RC circuit. Looking at the measurements in Table \ref{fig:rlctable}, it is clear that the phase difference is negative, hence the output voltage does in fact lead the input voltage. 
+
 
 \begingroup
 \bigskip
@@ -379,10 +486,10 @@ Wire Stripper & 1 \\
     \def\arraystretch{1.5}
     \begin{tabular}{cccccc}
         \toprule
-        \thead{Output} & \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Vout\\(mV)} &\thead{Phase \\ Difference (\degree)} \\
+        \thead{Output} & \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Vout\\(mV)} &\thead{Observed \\ Phase \\ Difference \\ (\degree)} \\
         \midrule
-        Vaa & 1 & 5 & 260 & 20\\
-        Vbb & 1 & 5 & 250 & 72\\
+        Vaa & 1 & 5 & 260 & -20\\
+        Vbb & 1 & 5 & 250 & -72\\
         \bottomrule
     \end{tabular}
     \captionof{figure}{Tabulation of the measurements for the RLC circuit built with 1K\ohm \, resistor, 4.7$mH$ inductor, and 3.3$uF$ capacitor}
@@ -390,13 +497,27 @@ Wire Stripper & 1 \\
 \medskip
 \endgroup
 
+
 \begingroup
     \centering
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab8_025.png}
-    \captionof{figure}{Phase shift of the RL circuit at 1 kHz. Yellow line represents the signal captured from inductor while purple line represents the signal captured from capacitor.}
-    \label{fig:rclosc1}
+    \captionof{figure}{Phase shift of the RL circuit at 1 kHz. Yellow line represents the $V_{aa}$ while purple line represents the $V_{bb}$ signal.}
+    \label{fig:rlcosc1}
+    \medskip
+\endgroup
+
+
+
+
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=\columnwidth]{images/lab8_029.png}
+    \captionof{figure}{Phase shift of the RL circuit at 40 kHz. Yellow line represents the $V_{aa}$ while purple line represents the $V_{bb}$ signal.}
+    \label{fig:rlcosc2}
     \medskip
 \endgroup
 
@@ -405,16 +526,15 @@ Wire Stripper & 1 \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{General Observations}
 
-\noindent {\color{red}some text related to the phasor calculations and their results psum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi.} \\
+\noindent In the case of the RC circuit, the frequency of the input signal was gradually increased until 40kHz. Figure \ref{fig:phaseshift1} shows the state of the phase shift at 1kHz and Figure \ref{fig:phaseshift40} shows the final state at 40kHz. In both images, the green signal represents the input voltage and the yellow represents the output voltage. It is clear that the output signal shifts leftwards, to eventually be in phase with the input signal. This confirms the notion that capacitors act like short circuits at high frequency signals, as impedance approaches zero.  \\
 
-\noindent Figures \ref{fig:phaseshift1} and \ref{fig:phaseshift40} demonstrate how phase shift changes as the frequency of the voltage source increases. \\
 
 \begingroup
     \centering
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab8_002.png}
-    \captionof{figure}{Phase shift at 1 kHz}
+    \captionof{figure}{Phase shift at 1 kHz for the RC circuit}
     \label{fig:phaseshift1}
     \medskip
 \endgroup
@@ -424,7 +544,7 @@ Wire Stripper & 1 \\
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab8_012.png}
-    \captionof{figure}{Phase shift at 40 kHz}
+    \captionof{figure}{Phase shift at approximately 3kHz for the RC circuit}
     \label{fig:phaseshift40}
     \medskip
 \endgroup
