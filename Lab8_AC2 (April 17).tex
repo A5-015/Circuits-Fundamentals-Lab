@@ -140,9 +140,8 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi. Sed convallis mi eu risus ullamcorper dictum. Proin iaculis velit at massa pellentesque, sed congue dolor aliquam. Aenean rutrum vel mauris a malesuada. Nam posuere sagittis.\\
+In this experiment, three different circuits were built (RC circuit, RL circuit, and RLC circuit) in order to measure phase shifts caused by practical circuit elements such as capacitors and inductors. For testing, 5V p-p at 1 kHz and 2 kHz were applied separately to each circuit and the phase shifts were measured by using the cursor functionality of the oscilloscope. It was observed that the RC circuit had a phase shift of -72\degree while the RL circuit had a phase shift of 40\degree at 1kHz. Also it was measured that the RLC circuit has a phase shift of -20\degree and -72\degree at 1kHz. Finally, the resonance frequency of the RLC circuit was calculated to be 1.4 kHz and observed to be at approximately 1.3.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices feugiat risus eget tincidunt. Integer nibh erat, luctus sed consectetur eu, dapibus ac nisi. Sed convallis mi eu risus ullamcorper dictum. Proin iaculis velit at massa pellentesque, sed congue dolor aliquam. Aenean rutrum vel mauris a malesuada. Nam posuere sagittis.\\
 \end{abstract}
 
 %Percenta of power being consumed at the internal resistence
@@ -208,6 +207,8 @@ Wire Stripper & 1 \\
 \endgroup
 
 \noindent Following the schematic above (Figure \ref{fig:circ1}), the circuit was prototyped on a breadboard. To measure the output signal, the positive terminal of the oscilloscope was attached to the leg of the capacitor, while the negative terminal to the common ground of the circuit. $R_1$ was selected to be $1k\ohm$ and the capacitor was selected to be 3.3$uF$. Once the circuit was built (see Figure \ref{fig:circ1image}), 5V p-p sinusoidal waves at 1 kHz, later 2 kHz, were applied. The phase shifts between the original sinusoidal wave and the output waveform, as well  as the magnitudes of each, were measured using the cursor functionality of the oscilloscope. Later, the frequency of the waveform was increased up to 40 kHz to observe the gradual change in the phase shift.
+
+\bigskip
 
 \begingroup
     \centering
@@ -423,7 +424,7 @@ Z_{L} = 2\pi\cdot fLj = 2\pi \cdot (1\cdot10^3)(4.7\cdot10^-3)(j) = 0 + 20.72j
                     \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Vout\\(mV)} & \thead{Calculated \\ Phase\\Difference\\(\degree)} & \thead{Observed \\ Phase \\ Difference\\(\degree)}\\
                 \midrule
                     1 & 5 & 1000 + 20.72j & 220 &  88.81  & 40\\
-                    2 & 5 &               & 320 &     & 50\\
+                    2 & 5 & 1000 + 10.36j & 320 &  89.1   & 50\\
                 \bottomrule
             \end{tabular}
         \captionof{figure}{Tabulation of the measurements for the RC circuit built with 1K\ohm \, resistor and 4.7$mH$ inductor}
@@ -509,6 +510,35 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
 \endgroup
 
 
+{\color{red}I really don't know where this goes but this was written on the paper:
+
+    \begin{equation}
+        \begin{split}
+            \omega \cdot L & = Reactance \, of \, Inductor \\
+            \frac{1}{\omega \cdot C} & = Reactance\, of\,  Conductor \\ 
+            \omega^2 L & = \frac{1}{C}\\
+            \omega^2 & = \frac{1}{LC}\\
+            \omega & = \sqrt{\frac{1}{LC}}\\
+            2 \pi f & = \frac{1}{\sqrt{LC}} \\
+            f & = \frac{1}{2 \pi \sqrt{LC}} \\
+        \end{split}
+        \label{eg:resfreq}
+    \end{equation} \\
+    
+    Since we already know the values for L and C, we can calculate the resonant frequency by using the calculations shown in Equation \ref{eg:resfreq}. The overlap in the phases caused by the resonance can be observed in Figure \ref{fig:phaseshift1}.
+}
+
+
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=\columnwidth]{images/lab8_final.png}
+    \captionof{figure}{Phase shift of the RL circuit at 1.4 kHz. Yellow line represents the $V_{aa}$ while purple line represents the $V_{bb}$ signal.}
+    \label{fig:phaseshift1}
+    \medskip
+\endgroup
+
 
 
 \begingroup
@@ -552,8 +582,6 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
 \section{Conclusions}
 % Understanding and applications
 \noindent We learned how phase shift changes not only based on the components used but also based on the frequency of the sinusoidal wave fed into the system.
-
-
 
 \printbibliography
 
