@@ -140,11 +140,11 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this experiment, three different circuits were built (RC circuit, RL circuit, and RLC circuit) in order to measure phase shifts caused by practical circuit elements such as capacitors and inductors. For testing, 5V p-p at 1 kHz and 2 kHz were applied separately to each circuit and the phase shifts were measured by using the cursor functionality of the oscilloscope. It was observed that the RC circuit had a phase shift of -72\degree while the RL circuit had a phase shift of 40\degree at 1kHz. Also it was measured that the RLC circuit has a phase shift of -20\degree and -72\degree at 1kHz. Finally, the resonance frequency of the RLC circuit was calculated to be 1.4 kHz and observed to be at approximately 1.3.
+In this experiment, three different circuits were built (RC circuit, RL circuit, and RLC circuit) in order to measure phase shifts caused by practical circuit elements such as capacitors and inductors. For testing, 5V p-p at 1 kHz and 2 kHz were applied separately to each circuit and the phase shifts were measured by using the cursor functionality of the oscilloscope. It was observed that the RC circuit had a phase shift of -72\degree while the RL circuit had a phase shift of 40\degree at 1kHz. Also it was measured that the RLC circuit has a phase shift of -20\degree and -72\degree at 1kHz. Finally, the resonance frequency of the RLC circuit was calculated to be 1.27 kHz and observed to be at approximately 1.3 kHz.
 
 \end{abstract}
 
-%Percenta of power being consumed at the internal resistence
+%Percenta of power being consumed at the internal Resistance
 
 %What happens to voltage when external load is connected and current %consumption increaased
 
@@ -242,7 +242,7 @@ Wire Stripper & 1 \\
 \medskip
 
 
-\noindent The circuit was built following Figure \ref{fig:circ2}. The output signal was similarly measured with one crocodile grabber on the leg of an inductor and another on the common ground. One 4.7 $mH$ inductor and one 1K \ohm resistor were used in the circuit. Once the circuit was built (see Figure \ref{fig:circ2image}), the magnitude of the output voltage and the phase difference between the supplied signal and the output signal were recorded. The measurements were repeated for 1kHz and 2 kHz frequencies. \\
+\noindent The circuit was built following Figure \ref{fig:circ2}. The output signal was similarly measured with one crocodile grabber on the leg of an inductor and another on the common ground. One 4.7mH inductor and one 1K \ohm resistor were used in the circuit. Once the circuit was built (see Figure \ref{fig:circ2image}), the magnitude of the output voltage and the phase difference between the supplied signal and the output signal were recorded. The measurements were repeated for 1kHz and 2 kHz frequencies. \\
 
 \begingroup
     \centering
@@ -315,23 +315,36 @@ Z_{C} = \frac{1}{2\pi fcj} = \frac{1}{2\pi(1\cdot10^3)(3.3\cdot10^{-6})j} = 0 - 
     \begin{split}
         V_s & = I \angle \alpha \times Z \angle \beta \\
         0 & = \alpha - 2.76 \\
-        \alpha & = 2.76
+        \alpha & = 2.76 
     \end{split}
     \label{eq:calcRC}
 \end{equation} \\
 
-\noindent Here, the reactance $0 - 48.25j$ of the capacitor, calculated in Equation \ref{eq:cap_reactance}, was converted into the polar form. This provided the polar angle of the reactance, which was $-90\degree$. This angle value was used in Equation \ref{eq:calcRC2} to calculate the phase difference.
+\noindent The expected current and output voltage can also be calculated for each frequency. Equations \ref{eq:calcRCcurrent} and \ref{eq:calcRC2} show the process for 1kHz. 
+
+  
+        
+\begin{equation}
+    \begin{split}
+        I \angle \alpha & = \frac{V_s}{Z \angle \beta} \\
+        I \angle \alpha & = \frac{5 \angle 0}{1001.16 \angle -2.76}\\
+        I \angle \alpha & = 0.005 \angle 2.76 \ A\\
+    \end{split}
+    \label{eq:calcRCcurrent}
+\end{equation} \\
+
+\noindent Here, the reactance $0 - 48.25j$ of the capacitor, calculated in Equation \ref{eq:cap_reactance}, was converted into the polar form. This provided the polar angle of the reactance, which was $-90\degree$. This angle value was used in Equation \ref{eq:calcRC2} to calculate the output voltage magnitude and phase difference. \\
 
 \begin{equation}
     \begin{split}
-        V_c & = I \angle \alpha \times X \angle -90\degree \\
-            & = 2.76\degree - 90\degree \\
-            & = -87.24\degree
+        V_c & = I \angle \alpha \times X \angle 90 \\
+        V_c & =  0.005 \angle 2.76 \times 48.25 \angle -90 \\
+        V_c & = 0.241 \angle -87.24 V \\
     \end{split}
     \label{eq:calcRC2}
 \end{equation} \\
 
-\noindent Calculations (\ref{eq:cap_reactance}, \ref{eq:calcRC}, and \ref{eq:calcRC2}) were repeated for 2 kHz AC source voltage and results were recorded in Table \ref{fig:rctable}.
+\noindent Calculations (\ref{eq:cap_reactance}, \ref{eq:calcRC}, and \ref{eq:calcRC2}) were repeated for 2 kHz AC source voltage and results were recorded in Table \ref{fig:rctable2}.
 
 \small
     \begingroup
@@ -341,19 +354,39 @@ Z_{C} = \frac{1}{2\pi fcj} = \frac{1}{2\pi(1\cdot10^3)(3.3\cdot10^{-6})j} = 0 - 
         \setlength\tabcolsep{3pt}
             \begin{tabular}{ccccccc}
                 \toprule
-                    \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Vout\\(mV)} & \thead{Calculated \\ Phase\\Difference\\(\degree)} & \thead{Observed \\ Phase \\ Difference\\(\degree)}\\
+                    \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Calculated \\ Vout\\(mV)} & \thead{Calculated \\ Phase\\Difference\\(\degree)} & \thead{Calculated \\ Current \\ (mA)}\\
                 \midrule
-                    1 & 5 & 1000 - 48.25j & 254 & -87.24 & -74\\
-                    2 & 5 & 1000 - 24.13j & 150 & -88.62 & -72\\
+                    1 & 5 & 1000 - 48.25j & 241 & -87.24 & 5\\
+                    2 & 5 & 1000 - 24.13j & 121 & -88.62 & 5\\
                 \bottomrule
             \end{tabular}
-        \captionof{figure}{Tabulation of the measurements for the RC circuit built with 1K\ohm \, resistor and 3.3$uF$ capacitor}
+        \captionof{figure}{Tabulation of the calculations for the built RC circuit }
         \label{fig:rctable}
+    \endgroup
+\normalsize
+
+
+\small
+    \begingroup
+    \bigskip
+        \centering
+        \def\arraystretch{1.5}
+        \setlength\tabcolsep{3pt}
+            \begin{tabular}{ccccccc}
+                \toprule
+                   \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Observed \\ Vout\\(mV)} & \thead{Observed \\ Phase\\Difference\\(\degree)} & \thead{Observed \\ Current \\ (mA)}\\
+                \midrule
+                    1 & 5 & 1000 - 48.25j & 254  & -74 & 5\\
+                    2 & 5 & 1000 - 24.13j & 150  & -72 & 5\\
+                \bottomrule
+            \end{tabular}
+        \captionof{figure}{Tabulation of the measurements for the built RC circuit}
+        \label{fig:rctable2}
     \medskip
     \endgroup
 \normalsize
 
-\noindent There was a significant difference between the theoretical and measured phase difference in the RC circuit. The most reasonable explanation is that the capacitor was assumed to behave ideally in the calculations, whereas in practice, its performance was hindered. As seen in Figure \ref{fig:rcosc1} and \ref{fig:rcosc2}, the output signal, in yellow, has a lower voltage than the input voltage; when looking at Figure \ref{fig:rctable}, this decrease in output voltage can explained by the higher impedance caused by the higher input frequency.
+\noindent There were noticeable difference between the theoretical and measured phase differences and output voltages in the RC circuit. The most reasonable explanation is that the capacitor was assumed to behave ideally in the calculations, whereas in practice, its performance was hindered. As seen in Figure \ref{fig:rcosc1} and \ref{fig:rcosc2}, the output signal, in yellow, has a lower voltage than the input voltage; when looking at Figure \ref{fig:rctable}, this decrease in output voltage can explained by the lower impedance caused by the higher input frequency.
 
 
 \begingroup
@@ -399,18 +432,29 @@ Z_{L} = 2\pi\cdot fLj = 2\pi \cdot (1\cdot10^3)(4.7\cdot10^-3)(j) = 0 + 20.72j
     \label{eq:calcRL}
 \end{equation} \\
 
+\noindent The expected current and output voltage can also be calculated for each frequency. Equations \ref{eq:calcRCcurrent} and \ref{eq:calcRL2} show the process for 1kHz.
+
+\begin{equation}
+    \begin{split}
+        I \angle \alpha & = \frac{V_s}{Z \angle \beta} \\
+        I \angle \alpha & = \frac{5 \angle 0}{1000.2 \angle 1.19}\\
+        I \angle \alpha & = 0.005 \angle -1.19 \ A\\
+    \end{split}
+    \label{eq:calcRCcurrent}
+\end{equation} \\
+
 \noindent The reactance of the inductor,  $0 + 20.72j$, is once again rewritten in polar form. Converted angle value was used in Equation \ref{eq:calcRL} to calculate the phase difference as shown in Equation \ref{eq:calcRL2}.
 
 \begin{equation}
     \begin{split}
-        V_c & = I \angle \alpha \times X \angle 90\degree \\
-            & = -1.19\degree + 90\degree \\
-            & = 88.81\degree
+        V_l & = I \angle \alpha \times X \angle 90 \\
+        V_l & =  0.005 \angle 2.76 \times 20.72 \angle 90 \\
+        V_l & = 0.104 \angle 88.81 V \\
     \end{split}
     \label{eq:calcRL2}
 \end{equation} \\
 
-\noindent The calculations shown above were repeated for a 2kHz input signal, with all measurements recorded in Table \ref{fig:rltable}.
+\noindent The calculations shown above were repeated for a 2kHz input signal, with all measurements recorded in Table \ref{fig:rltable2}.
 
 
 \small
@@ -421,21 +465,42 @@ Z_{L} = 2\pi\cdot fLj = 2\pi \cdot (1\cdot10^3)(4.7\cdot10^-3)(j) = 0 + 20.72j
         \setlength\tabcolsep{3pt}
             \begin{tabular}{ccccccc}
                 \toprule
-                    \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Vout\\(mV)} & \thead{Calculated \\ Phase\\Difference\\(\degree)} & \thead{Observed \\ Phase \\ Difference\\(\degree)}\\
+                    \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Calculated \\ Vout\\(mV)} & \thead{Calculated \\ Phase\\Difference\\(\degree)} & \thead{Calculated \\ Current \\ (mA)}\\
                 \midrule
-                    1 & 5 & 1000 + 20.72j & 220 &  88.81  & 40\\
-                    2 & 5 & 1000 + 10.36j & 320 &  89.1   & 50\\
+                    1 & 5 & 1000 + 20.72j & 104 &  88.81  & 5\\
+                    2 & 5 & 1000 + 10.36j & 52 &  89.1   & 5\\
                 \bottomrule
             \end{tabular}
-        \captionof{figure}{Tabulation of the measurements for the RC circuit built with 1K\ohm \, resistor and 4.7$mH$ inductor}
+        \captionof{figure}{Tabulation of the calculations for the built RL circuit}
         \label{fig:rltable}
+    \medskip
+    \endgroup
+\normalsize
+
+\small
+    \begingroup
+    \bigskip
+        \centering
+        \def\arraystretch{1.5}
+        \setlength\tabcolsep{3pt}
+            \begin{tabular}{ccccccc}
+                \toprule
+                    \thead{Frequency\\(kHz)} & \thead{Vin\\(V)} & \thead{Impedance\\(\ohm)} &\thead{Observed \\ Vout\\(mV)} & \thead{Observed \\ Phase\\Difference\\(\degree)} & \thead{Observed \\ Current \\ (mA)}\\
+                \midrule
+                    1 & 5 & 1000 + 20.72j & 220 &  40  & N/A\\
+                    2 & 5 & 1000 + 10.36j & 320 &  50   & N/A\\
+                \bottomrule
+            \end{tabular}
+        \captionof{figure}{Tabulation of the measurements
+        for the built RL circuit}
+        \label{fig:rltable2}
     \medskip
     \endgroup
 \normalsize
 
 
 
-{\color{red} We need to talk about }
+\noindent In this case, there was a significant difference between the expected and measured phase difference. The most likely explanation is the lack of precision in the inductor value and its relatively low quality. Figure \ref{fig:rlosc1} and \ref{fig:rlosc2} show the output voltage at a higher voltage, which is explained by the higher impedance caused by the increase in frequency.
 
 \begingroup
     \centering
@@ -509,8 +574,8 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
     \medskip
 \endgroup
 
+\noindent As another observation, increasing the input frequency resulted in phase shifts, with a 4kHz frequency shifting the output signals behind the input signal. Comparing Figure \ref{fig:rlcosc2} and \ref{fig:rlcosc1} makes this difference obvious. This, implied the existence of a frequency at which the output signal and the input signal approximately aligned, known as resonance frequency. The resonance frequency is when the reactance of the inductor and capacitor in an RLC circuit are equal, so that the phase shifts cancel each other out. Equation \ref{eq:resfreq} shows the derivation of the formula for calculating this resonance frequency. 
 
-{\color{red}I really don't know where this goes but this was written on the paper:
 
     \begin{equation}
         \begin{split}
@@ -522,11 +587,11 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
             2 \pi f & = \frac{1}{\sqrt{LC}} \\
             f & = \frac{1}{2 \pi \sqrt{LC}} \\
         \end{split}
-        \label{eg:resfreq}
+        \label{eq:resfreq}
     \end{equation} \\
     
-    Since we already know the values for L and C, we can calculate the resonant frequency by using the calculations shown in Equation \ref{eg:resfreq}. The overlap in the phases caused by the resonance can be observed in Figure \ref{fig:phaseshift1}.
-}
+\noindent Substituting the known values, L and C, for 4.7mH and 3.3$\mu$ F, respectively, resulted in a resonance frequency of approximately 1.28 kHz. When measured using the oscilloscope, the resonance frequency was found to be approximately 1.3 kHz (see Figure \ref{fig:phaseshift1}).
+
 
 
 \begingroup
@@ -534,7 +599,7 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab8_final.png}
-    \captionof{figure}{Phase shift of the RL circuit at 1.4 kHz. Yellow line represents the $V_{aa}$ while purple line represents the $V_{bb}$ signal.}
+    \captionof{figure}{Phase shift of the RL circuit at 1.3 kHz. Yellow line represents the $V_{aa}$ while purple line represents the $V_{bb}$ signal.}
     \label{fig:phaseshift1}
     \medskip
 \endgroup
@@ -546,7 +611,7 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/lab8_029.png}
-    \captionof{figure}{Phase shift of the RL circuit at 40 kHz. Yellow line represents the $V_{aa}$ while purple line represents the $V_{bb}$ signal.}
+    \captionof{figure}{Phase shift of the RL circuit at 4 kHz. Yellow line represents the $V_{aa}$ while purple line represents the $V_{bb}$ signal.}
     \label{fig:rlcosc2}
     \medskip
 \endgroup
@@ -581,7 +646,9 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
 
 \section{Conclusions}
 % Understanding and applications
-\noindent We learned how phase shift changes not only based on the components used but also based on the frequency of the sinusoidal wave fed into the system.
+\noindent As a result of this experiment, we learned how phases shift, not only based on the specification values of the reactive components, but also based on the frequency of the sinusoidal wave fed into the system. Furthermore, we learned that this frequency could be manipulated, to find the resonance frequency, in turn achieving a situation where there is no phase shift in current or voltage. The idea of resonance frequency can be used in circuits to act as a filter for certain ranges. For example, if the goal is to prevent a load from receiving certain frequencies, a tank circuit can act as a high impedance at that range of frequencies. \\
+
+\noindent Ideally, an RC circuit can produce an output voltage with a phase shift of 90\degree. Combining two such circuits can be used to produce an output wave of 180\degree. However, practically speaking, as shown in this experiment, this is usually not the case. Hence, several stages can be used to achieve such an output. For example, three stages with a phase shift of 60\degree each, produces an RC oscillator, used in audio applications to convert DC signals to an AC signal. 
 
 \printbibliography
 
