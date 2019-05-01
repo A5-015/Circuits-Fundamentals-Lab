@@ -31,7 +31,7 @@
 
 \renewcommand\theadfont{}
 
-%\raggedbottom
+\raggedbottom
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
@@ -242,7 +242,7 @@ Wire Stripper & 1 \\
 \medskip
 
 
-\noindent The circuit was built following Figure \ref{fig:circ2}. The output signal was similarly measured with one crocodile grabber on the leg of an inductor and another on the common ground. One 4.7mH inductor and one 1K \ohm resistor were used in the circuit. Once the circuit was built (see Figure \ref{fig:circ2image}), the magnitude of the output voltage and the phase difference between the supplied signal and the output signal were recorded. The measurements were repeated for 1kHz and 2 kHz frequencies. \\
+\noindent The circuit was built following Figure \ref{fig:circ2}. The output signal was similarly measured with one crocodile grabber on the leg of an inductor and another on the common ground. One 4.7mH inductor and one 1K\ohm \, resistor were used in the circuit. Once the circuit was built (see Figure \ref{fig:circ2image}), the magnitude of the output voltage and the phase difference between the supplied signal and the output signal were recorded. The measurements were repeated for 1kHz and 2 kHz frequencies. \\
 
 \begingroup
     \centering
@@ -295,7 +295,7 @@ Wire Stripper & 1 \\
 
 \section{Results and Discussion}
 
-\noindent All configurations operated, albeit far from ideal scenarios, and the results of each circuit configuration were recorded in tables and the observed wave forms were captured. Green lines represents the signal directly coming from the AC function generator and yellow and purple lines represent the signal captured from the reactive components of the circuit.
+\noindent All configurations operated, albeit far from ideal scenarios, and the results of each circuit configuration were recorded in tables and the observed wave forms were captured. In the screenshots, green lines represents the signal directly coming from the AC function generator and yellow and purple lines represent the signal captured from the reactive components of the circuit.
 
 %%%%%%%%%%%%%%%%
 %% RC Circuit %%
@@ -388,6 +388,8 @@ Z_{C} = \frac{1}{2\pi fcj} = \frac{1}{2\pi(1\cdot10^3)(3.3\cdot10^{-6})j} = 0 - 
 
 \noindent There were noticeable difference between the theoretical and measured phase differences and output voltages in the RC circuit. The most reasonable explanation is that the capacitor was assumed to behave ideally in the calculations, whereas in practice, its performance was hindered. As seen in Figure \ref{fig:rcosc1} and \ref{fig:rcosc2}, the output signal, in yellow, has a lower voltage than the input voltage; when looking at Figure \ref{fig:rctable}, this decrease in output voltage can explained by the lower impedance caused by the higher input frequency.
 
+\\
+\bigskip
 
 \begingroup
     \centering
@@ -502,6 +504,8 @@ Z_{L} = 2\pi\cdot fLj = 2\pi \cdot (1\cdot10^3)(4.7\cdot10^-3)(j) = 0 + 20.72j
 
 \noindent In this case, there was a significant difference between the expected and measured phase difference. The most likely explanation is the lack of precision in the inductor value and its relatively low quality. Figure \ref{fig:rlosc1} and \ref{fig:rlosc2} show the output voltage at a higher voltage, which is explained by the higher impedance caused by the increase in frequency.
 
+\bigskip
+
 \begingroup
     \centering
     \medskip
@@ -543,7 +547,7 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
     \label{eq:rlcimpedance}
 \end{equation} \\
 
-\noindent Rewritten in polar form, the equation is equivalent to $1000.17 \angle-1.58\degree$. As seen before, a negative angle implies that the system is capacitive. Therefore, we can infer that the output voltage leads the input voltage, as was in the case of the RC circuit. Looking at the measurements in Table \ref{fig:rlctable}, it is clear that the phase difference is negative, hence the output voltage does in fact lead the input voltage. 
+\noindent Rewritten in polar form, the equation is equivalent to $1000.17 \angle-1.58\degree$. As seen before, a negative angle implies that the system is capacitive. Therefore, we can infer that the output voltage leads the input voltage, as was in the case of the RC circuit. Looking at the measurements in Table \ref{fig:rcltable}, it is clear that the phase difference is negative, hence the output voltage does in fact lead the input voltage. 
 
 
 \begingroup
@@ -573,6 +577,8 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
     \label{fig:rlcosc1}
     \medskip
 \endgroup
+
+\bigskip
 
 \noindent As another observation, increasing the input frequency resulted in phase shifts, with a 4kHz frequency shifting the output signals behind the input signal. Comparing Figure \ref{fig:rlcosc2} and \ref{fig:rlcosc1} makes this difference obvious. This, implied the existence of a frequency at which the output signal and the input signal approximately aligned, known as resonance frequency. The resonance frequency is when the reactance of the inductor and capacitor in an RLC circuit are equal, so that the phase shifts cancel each other out. Equation \ref{eq:resfreq} shows the derivation of the formula for calculating this resonance frequency. 
 
@@ -648,7 +654,7 @@ Equation \ref{eq:rlcimpedance} calculates the total impedance of the RLC circuit
 % Understanding and applications
 \noindent As a result of this experiment, we learned how phases shift, not only based on the specification values of the reactive components, but also based on the frequency of the sinusoidal wave fed into the system. Furthermore, we learned that this frequency could be manipulated, to find the resonance frequency, in turn achieving a situation where there is no phase shift in current or voltage. The idea of resonance frequency can be used in circuits to act as a filter for certain ranges. For example, if the goal is to prevent a load from receiving certain frequencies, a tank circuit can act as a high impedance at that range of frequencies. \\
 
-\noindent Ideally, an RC circuit can produce an output voltage with a phase shift of 90\degree. Combining two such circuits can be used to produce an output wave of 180\degree. However, practically speaking, as shown in this experiment, this is usually not the case. Hence, several stages can be used to achieve such an output. For example, three stages with a phase shift of 60\degree each, produces an RC oscillator, used in audio applications to convert DC signals to an AC signal. 
+\noindent Ideally, an RC circuit can produce an output voltage with a phase shift of 90\degree. Combining two such circuits can be used to produce an output wave of 180\degree. However, practically speaking, as shown in this experiment, this is usually not the case. Hence, several stages can be used to achieve such an output. For example, three stages with a phase shift of 60\degree \, each, produces an RC oscillator, used in audio applications to convert DC signals to an AC signal. 
 
 \printbibliography
 
