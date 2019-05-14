@@ -139,7 +139,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this lab, the purpose was using the LTSpice software to simulate a wye-wye circuit and measure different properties such as voltages, currents, instantaneous power dissipated, and the average power dissipated at different points of the circuit. 
+In this lab, the purpose was using the LTSpice software to simulate a wye-wye circuit and measure different properties such as voltages, currents, instantaneous power dissipated, and the average power dissipated at different points of the circuit.
 
 \end{abstract}
 
@@ -148,9 +148,7 @@ In this lab, the purpose was using the LTSpice software to simulate a wye-wye ci
 %%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-\IEEEPARstart{T}\lowercase{he} goal of this lab was to simulate a  wye-connected, poly-phase circuit using LT Spice and observe the simulation values provided.\\
-
-\noindent When referring to transformer load configurations, the two options are wye-connected and  delta-connected configurations (see Figures \ref{fig:wyeconfig} and \ref{fig:deltaconfig}).
+\IEEEPARstart{W}\lowercase{hen} referring to transformer load configurations, the two options are wye-connected and  delta-connected configurations (see Figures \ref{fig:wyeconfig} and \ref{fig:deltaconfig}).
 
 \begingroup
     \centering
@@ -369,14 +367,14 @@ V_{inductor} = (2 \angle -59.99\degree)(86.6j) = 173.2 \angle 30.01\degree
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Instantaneous and Average Power}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Instantaneous power is the power across any component at any instant of time. 
+\noindent Instantaneous power is the power across any component at any instant of time. The equation below calculates the apparent power through the inductor. 
 
 \begin{equation} 
-I^2 \cdot Z_{Inductor} = {2.00 \angle -59.99}^2 \cdot 86.6j = 346.42 \angle -29.99  
+I^2 \cdot Z_{Inductor} = ({2.00 \angle -59.99})^2 \cdot 86.6j = 346.42 \angle -29.99 VAR
 \label{eq:calc3}
 \end{equation}
 
-Figure \ref{fig:inst_power_inductor} shows a peak to a peak power of approximately 340W. Comparing this result to equation \ref{eq:calc3} confirms the expected value of the power through the inductor.
+\noindent Figure \ref{fig:inst_power_inductor} shows a peak to a peak power of approximately 340W. Comparing this result to equation \ref{eq:calc3} confirms the expected magnitude of the power through the inductor.
 
 \begingroup
     \centering
@@ -388,8 +386,22 @@ Figure \ref{fig:inst_power_inductor} shows a peak to a peak power of approximate
     \medskip
 \endgroup
 
-Similar
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=\columnwidth]{images/Lab_9_ss_17.PNG}
+    \captionof{figure}{Simulation value of the average power through the inductor}
+    \label{fig:avg_power_inductor}
+    \medskip
+\endgroup
 
+\noindent Equation \ref{eq:calc4} calculates the average power across the resistor.
+
+\begin{equation} 
+I^2 \cdot R = {2.00 \angle -59.99}^2 \cdot 50 = 100 \angle -59.99 W
+\label{eq:calc4}
+\end{equation}
 
 
 \begingroup
@@ -397,11 +409,30 @@ Similar
     \medskip
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/Lab_9_ss_13.PNG}
-    \captionof{figure}{inst power through resistorse}
-    \label{fig:circ3}
+    \captionof{figure}{Instantaneous power through the resistor}
+    \label{fig:inst_power_rsistor}
     \medskip
 \endgroup
 
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=\columnwidth]{images/Lab_9_ss_16.PNG}
+    \captionof{figure}{Average power through the resistor}
+    \label{fig:avg_power_resistor}
+    \medskip
+\endgroup
+
+
+\noindent When the y-axes of Figures \ref{fig:avg_power_inductor} and  \ref{fig:avg_power_resistor} are closely analyzed, it is clear that the resistor has a range from 0W to 200W, while the inductor has a range from -180W to 180W. This situation shows that the resistor is a passive component and is able to dissipate power. On the contrary, the inductor both supplies and absorbs power, never truly dissipating power like the resistor. The simulation's choice to plot the inductor's power from a value of around -180W to 180W, results in an average power dissipation of approximately 1W, as seen in \ref{fig:avg_power_inductor}. This reflects the reality that inductors do not actually absorb any watt-power aside from minor heat loss. However, the resistor sees an average power of 100W, which accurately reflects the value obtained from equation \ref{eq:calc4}.
+
+\noindent Analyzing the power through the power source shows a similar phenomena. According to equation \ref{eq:calc5}, the apparent power supplied to the circuit should be 400 VA. Looking at Figures \ref{fig:inst_power_power} and \ref{fig:avg_power_power}, we see that this value is reflected in the peak-peak value since the traces are plotted from -300 to 100. Interestingly, taking the average of this peak-peak value gives -100W, which is the expected real watt-power that is provided by the power source to the resistor.
+
+\begin{equation} 
+S = {2.00 \angle -59.99} \cdot 20 \angle 0 = 400 \angle -59.99 VA
+\label{eq:calc5}
+\end{equation}
 
 \begingroup
     \centering
@@ -409,22 +440,9 @@ Similar
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/Lab_9_ss_14.PNG}
     \captionof{figure}{  inst  power through power source}
-    \label{fig:circ3}
+    \label{fig:inst_power_power}
     \medskip
 \endgroup
-
-
-
-\begingroup
-    \centering
-    \medskip
-    %width=\columnwidth
-    \includegraphics[width=\columnwidth]{images/Lab_9_ss_11.PNG}
-    \captionof{figure}{ average power across voltage source 2}
-    \label{fig:circ3}
-    \medskip
-\endgroup
-
 
 
 \begingroup
@@ -433,49 +451,21 @@ Similar
     %width=\columnwidth
     \includegraphics[width=\columnwidth]{images/Lab_9_ss_15.PNG}
     \captionof{figure}{  average power of power source}
-    \label{fig:circ3}
+    \label{fig:avg_power_power}
     \medskip
 \endgroup
 
-
-
-
-\begingroup
-    \centering
-    \medskip
-    %width=\columnwidth
-    \includegraphics[width=\columnwidth]{images/Lab_9_ss_16.PNG}
-    \captionof{figure}{ average power of resistor}
-    \label{fig:circ3}
-    \medskip
-\endgroup
-
-
-
-\begingroup
-    \centering
-    \medskip
-    %width=\columnwidth
-    \includegraphics[width=\columnwidth]{images/Lab_9_ss_17.PNG}
-    \captionof{figure}{ average power of inductor}
-    \label{fig:circ3}
-    \medskip
-\endgroup
-
-
-
-
-
-
-
-
-
+Hence, we see that the LTSpice software provides an interesting way of depicting imaginary and real power. In cases of imaginary power, it is reflected through the peak-peak value; moreover, the values are plotted in such a way that when taking the average, it results the real power that is dissipated through the component or circuit. 
 
 %%%%%%%%%%%%%%%%%
 %% Conclusions %%
 %%%%%%%%%%%%%%%%%
 \section{Conclusions}
 % Understanding and applications
+
+\noindent As a result of this experiment, we learned how instantaneous \& average power, line voltage \& current, and phase voltage \& current changes at different points of a 3 phase wye-wye circuit. We also learned how to use different available probes in LTSpice software for AC circuit analysis. After building practical circuits in the last lab session, we had a chance to analyze AC circuits under ideal conditions and ideal components in this lab session. We also confirmed the graphs obtained from the simulation with our manual calculations. In addition to the calculations, we also learned caveat of using LTSpice and circuit simulations in general. For example, initially we forgot to connect both of the neutral nodes to the ground. Using this configuration resulted in getting gibberish results in the plots. Later, we connected both of the neutrals and simulation worked as expected. We learned that common grounding is important for the software that it can assume same voltage levels for these points can solve the equations successfully to plot the graphs.  
+\\
+\noindent We learned how wye-wye connection is can tolerate imbalanced loads and keep running. The wye-wye circuit we worked in the LTSpice has many more usage cases beyond checking the voltage values in a simulator. Due to their reliability and higher efficiency under imbalance loads, they are considered as practical connection types and proffered by majority of the heavy industries.
 
 
 \printbibliography
