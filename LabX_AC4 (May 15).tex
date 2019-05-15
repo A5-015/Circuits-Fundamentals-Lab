@@ -140,7 +140,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this lab, the purpose was using the LTSpice software to build and simulate transformers while declaring the mutual inductance between the transformer coils. The voltage and current magnitudes & phase angles were determined by using LTSpice software. The average power dissipated in the load resistor or the second winding was also measured. Measured values were recorded in tables.
+In this lab, the purpose was to use the LTSpice software to build and simulate transformers while declaring the mutual inductance between the transformer coils. The voltage and current magnitudes & phase angles were determined by using LTSpice software. The average power dissipated in the load resistor or the second winding was also measured. Measured values were recorded in tables.
 
 \end{abstract}
 
@@ -297,7 +297,7 @@ In this lab, the purpose was using the LTSpice software to build and simulate tr
             ${Vsource}$ & 12 & 0\degree\\
             \bottomrule
         \end{tabular}
-    \captionof{figure}{Circuit 1 voltage results at 0.159155 Hz}
+    \captionof{figure}{Circuit 1 voltage results at 60 Hz}
     \label{fig:c1table1}
     \medskip
 \endgroup
@@ -317,7 +317,7 @@ In this lab, the purpose was using the LTSpice software to build and simulate tr
             ${V1}$ & 13.0158 & 130.601\degree\\
             \bottomrule
         \end{tabular}
-    \captionof{figure}{Circuit 1 current results at 0.159155 Hz}
+    \captionof{figure}{Circuit 1 current results at 60 Hz}
     \label{fig:c1table2}
     \medskip
 \endgroup
@@ -364,7 +364,7 @@ Solving this system of equations provides $I_{1}$ to be $13.01\angle-49.40\degre
             ${Vsource}$ & 20 & 60\degree\\
             \bottomrule
         \end{tabular}
-    \captionof{figure}{Circuit 2 voltage results at 0.159155 Hz}
+    \captionof{figure}{Circuit 2 voltage results at 60 Hz}
     \label{fig:c2table1}
     \medskip
 \endgroup
@@ -384,7 +384,7 @@ Solving this system of equations provides $I_{1}$ to be $13.01\angle-49.40\degre
             ${V1}$ & 3.57771 & -93.4349\degree\\
             \bottomrule
         \end{tabular}
-    \captionof{figure}{Circuit 2 current results at 0.159155 Hz}
+    \captionof{figure}{Circuit 2 current results at 60 Hz}
     \label{fig:c2table2}
     \medskip
 \endgroup
@@ -411,7 +411,7 @@ Solving this system of equations provides $I_{1}$ to be $13.01\angle-49.40\degre
             $V_{Vc1}$ & 290.924 & -180\degree\\
             \bottomrule
         \end{tabular}
-    \captionof{figure}{Circuit 3 voltage results at 0.159155 Hz}
+    \captionof{figure}{Circuit 3 voltage results at 60 Hz}
     \label{fig:c3table1}
     \medskip
 \endgroup
@@ -432,7 +432,7 @@ Solving this system of equations provides $I_{1}$ to be $13.01\angle-49.40\degre
             ${V1}$ & 54.2105 & 153.435\degree\\
             \bottomrule
         \end{tabular}
-    \captionof{figure}{Circuit 3 current results at 0.159155 Hz}
+    \captionof{figure}{Circuit 3 current results at 60 Hz}
     \label{fig:c3table2}
     \medskip
 \endgroup
@@ -500,14 +500,16 @@ As the voltage source provided for this circuit was a root-mean-square value, it
     \medskip
 \endgroup
 
-\noindent Referring back to Figure \ref{fig:c3table}, calculating the power should be a simple matter of multiplying  $V_{r2}$ by  $I_{r2}$. however, doing so results in the value $12.284\angle15.11\degree$, which has a magnitude roughly double to the 6.03W provided in the simulation.\\
+\noindent Referring back to Figures \ref{fig:c4table1} and \ref{fig:c4table2}, calculating the power should be a simple matter of multiplying  $V_{r2}$ by  $I_{r2}$. however, doing so results in the value $12.284\angle15.11\degree$, which has a magnitude roughly double to the 6.03W provided in the simulation.\\
 
 \noindent This discrepancy in results can be explained by inconsistency in using $V_{rms}$ and $V_{m}$. When using the values from the table to calculate power, the equation used should be $\frac{V_{m}I{m}}{2}$. Essentially, a simple multiplication of the values, as was done above, incorrectly assumes that values used are RMS values. The simulation, however, accounts for this and thus uses the correct method to obtain the average power. 
 
 \section{Conclusion}
 
-\noindent Simulating mutually coupled inductors in LT Spice brought a deeper understanding of how the software operates. The use of SPICE directives was brought into the light, as a valuable tool to define constraints and parameters for the circuit, especially more arbitrary ones such as mutual inductance and coupling coefficients. As was the case in the previous lab, this lab also demonstrated some of the measures the software takes to ensure a correct answer, making it a valuable tool. 
-
+\noindent Simulating mutually coupled inductors in LT Spice brought a deeper understanding of how the software operates. The use of SPICE directives was brought into the light, as a valuable tool to define constraints and parameters for the circuit, especially more arbitrary ones such as mutual inductance and coupling coefficients. As was the case in the previous lab, this lab also demonstrated some of the measures the software takes to ensure a correct answer, making it a valuable tool. \\
+\\
+\noindent Additionally, we learned how and where these transformers are used. For example, step down transformers can be used in chargers to generate 5V from the 220V in the wall outlet for mobile phones. Another example could be related to the step-up transformers. Step up transformers are being used to increase the voltage in the power lines to decrease the losses during the transmission. Transformers in the form of Tesla coils can even be used for short distance wireless power transfer. Transformers have so many usage cases in our daily lives, and these cases can be analyzed in software like LTSpice. \\
+\\
 \noindent In the future, it would benefit from gaining a more nuanced understanding of the analyses tools, such as the difference and purpose behind using a small signal AC analysis or a standard sinusoidal analysis. It would also be interesting to explore how far the SPICE directives can be taken in describing a circuit, and whether a circuit can be built purely out of these directives. 
 
 
