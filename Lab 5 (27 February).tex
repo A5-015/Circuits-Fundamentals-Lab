@@ -68,14 +68,14 @@
         {
         \huge 
         \begin{spacing}{1.5}
-            Lab Report \#5
+            Lab Report \#5: LC Circuit
             \\
             Circuits Fundamentals Lab, Spring 2019
             \bigskip
             \Large
             \\
             Determining the Inductance of a Built Inductor\\
-            By Analysis of a Simple Inductor-Capacitor (LC) Circuit
+            By Analysis of a Simple Inductor-Capacitor (Tank) Circuit
   
             \\
             \bigskip
@@ -126,13 +126,8 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this experiment, a variable capacitor was built by using aluminum foil, A4 paper, and a PVC pipe. The capacitor was used to implement a high and low pass filter, through which AC signals were passed at varying frequencies and the output was measured using an oscilloscope, thus allowing for the calculation of the capacitance. The high pass filter led to a maximum capacitance of 0.88 nF, while the low pass filter led to a maximum capacitance of 0.76 nF, compared to the measured max. capacitance of 0.82 nF. Further, low pass filter led to a minimum capacitance of 0.46 nF, compared to a calculated capacitance of 0.33 nF.
+In this experiment, an inductor was built by using copper wire and PVC pipe. The inductor was used to implement a simple LC circuit, through which AC signals were passed at varying frequencies and the output was measured using an oscilloscope, thus allowing for the calculation of the resonant frequency and inductance. Calculations showed that the resonant frequency for the built inductor was 14400 Hz; therefore, the calculated inductance was 0.083 mH. This was compared to the measured inductance of 0.081 mH, thus verifying the experimental procedure as a valid method for determining an unknown inductance.
 \end{abstract}
-
-
-
-
-
 
 %Percenta of power being consumed at the internal resistence
 
@@ -144,96 +139,115 @@ In this experiment, a variable capacitor was built by using aluminum foil, A4 pa
 
 \section{Introduction}
 
-\IEEEPARstart{T}\lowercase{he} goal of this lab was to build an inductor and connect it to a simple inductor-capacitor (LC) circuit. In doing so, the aim was to determine the resonance frequency ($F_{r}$) of the circuit and thus determine the inductance of the built inductor.
+\IEEEPARstart{T}\lowercase{he} goal of this lab was to build an inductor and connect it to a simple inductor-capacitor (LC) circuit. In doing so, the aim was to determine the resonance frequency ($F_{r}$) of the circuit and thus determine the inductance of the built inductor.\\
 
-\noindnet Inductors may be described as a two-terminal coil of conducing wire, which produces a magnetic field as current is passed through it. While an inductor acts as a short-circuit to direct current (DC), the main quality of an inductor is that it opposes the changing of current direction through it. 
+\noindent As current passes through the coil in the inductor, a magnetic field, and thus a magnetic flux, is generated through the core. Increasing or decreasing the current, produces a change in the magnetic field, which is followed by the generation of an electric field \cite{inductors}. Thus, while an inductor acts as a short-circuited wire to direct current (DC), the main quality of the passive component is that it opposes the changing of current direction through it \cite{hayt1986engineering}, which is what alternating current (AC) provides. Following this, an inductor is incapable of having an abrupt or non-continuous change in current passing through it. Moreover, looking at equation \ref{eq:inductorTheory}, an infinite change in current would require an infinite voltage, which is physically impossible.
 
-
-
-\noindent Capacitors are essentially two metallic plates, often with a dielectric material in between, which serves the purpose of reducing the electric field strength and thus increasing capacitance. Reducing the electric field strength has the effect of reducing the voltage; storing charge at a lower voltage increases the capacitance of the capacitor (see Equation \ref{eq:cap}).
 
 \begin{equation}
-C \propto \frac{1}{E}
-\label{eq:cap}
+v = L\frac{di}{dt}
+\label{eq:inductorTheory}
 \end{equation}
 
 
-\begingroup
-    \centering
-    %width=\columnwidth
-    \includegraphics[width=245]{images/lab5_6.png}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
-\endgroup
+\noindent When an inductor is connected in parallel with a capacitor and power is supplied using an AC function generator (see Figure \ref{fig:c1}), then there are two extreme scenarios, which depend on the frequency of the provided alternating current.
 
-\begingroup
-    \centering
-    %width=\columnwidth
-    \includegraphics[width=245]{images/lab5_8.png}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
-\endgroup
-
-\begingroup
-    \centering
-    %width=\columnwidth
-    \includegraphics[width=245]{images/lab5_9.png}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
-\endgroup
-
-\begingroup
-    \centering
-    %width=\columnwidth
-    \includegraphics[width=245]{images/lab5_7.png}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
-\endgroup
-
-\begingroup
-    \centering
-    %width=\columnwidth
-    \includegraphics[width=245]{images/lab5_5.jpg}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
-\endgroup
-
-\begingroup
-    \centering
-    %width=\columnwidth
-    \includegraphics[width=245]{images/lab5_4.jpg}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
-\endgroup
+% \noindent In direct current (DC) circuits, capacitors are used as "storage devices" to collect charge as long as a voltage is constantly applied. On the other hand, in alternating current (AC) circuits, the capacitor charges and discharges as the current alternates. This charging and discharging behavior occurs in a 90\degree  phase difference to the alternating current. Due to different behavior based on either DC or AC, capacitors are often used in high pass (HPF) and low pass filters (LPF) to filter out certain signals. The placement of capacitors in HPF and LPF is shown in Figures \ref{fig:HPF} and \ref{fig:LPF}.
 
 
 \begingroup
     \centering
+    \medskip
     %width=\columnwidth
-    \includegraphics[width=245]{images/lab5_3.jpg}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
+    \includegraphics[width=\columnwidth]{images/lab5_6.png}
+    \captionof{figure}{A simple inductor-capacitor (tank) circuit}
+    \label{fig:c1}
+    \medskip
+\endgroup
+
+\noindent In one extreme, where the supplied current is of very low frequency, the inductor acts as a short-circuiting wire while the capacitor acts as an open circuits (see Figure \ref{fig:c2}). 
+
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=\columnwidth]{images/lab5_8.png}
+    \captionof{figure}{Extreme case of very low frequency}
+    \label{fig:c2}
+    \medskip
+\endgroup
+
+\noindent On the other hand, when the supplied current is of very high frequency, the inductor acts an open-circuiting element, as inductors oppose change, while the capacitor acts a short-circuiting element (see Figure \ref{fig:c3}).
+
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=\columnwidth]{images/lab5_9.png}
+    \captionof{figure}{Extreme case of very high frequency}
+    \label{fig:c3}
+    \medskip
+\endgroup
+
+\noindent In each of the extreme cases, one of the two components reaches its maximum impedance. There must also then exist a certain frequency, the resonance frequency $(F_{r})$, at which the impedance of both components is at its maximum. In the case of resonance frequency, the circuit effectively is open-circuited. Therefore, theoretically, all the current circulates between the two components and the output voltage is equal to the input voltage \cite{equations}.\\
+
+\noindent If X represents impedance:
+
+
+\begin{equation}
+X_{L}=2\pi fL
+\label{eq:XL}
+\end{equation}
+
+\begin{equation}
+X_{c}=\frac{1}{2\pi fC}
+\label{eq:XC}
+\end{equation}
+
+\noindent Then, setting the two impedances equal to each other and simplifying the equation leads to an equation that determines the resonance frequency \cite{equations}.
+
+\begin{equation}
+F_{r}=\frac{1}{2\pi \sqrt{LC}}
+\label{eq:FR}
+\end{equation}
+
+\noindent Experimentally determining the resonance frequency and manipulating Equation \ref{eq:FR} can then help in calculating the unknown inductance of the built inductor.
+
+\section{Building the Inductor and Tank Circuit}
+
+\noindent An inductor is simply a coil of conductor wrapped around a core. The built inductor used copper wires wound around PVC pipes, ensuring that the windings were as taut and parallel to each other as possible. To allow for this, four PVC joints each had ten grooves sawed into them. The PVC joints were then attached to the four ends on a cross-shaped PVC pipe. Then, the copper wire was tightly wound around the PVC piece ten times and each winding was placed into the grooves (see Figure \ref{fig:inductor}).\\
+
+\noindent To build the filtering circuit, the schematic from Figure \ref{fig:c1} was simply followed. In short, the power cable from the AC function generator was connected to one terminal of the built inductor and a $1.5\mu F$ capacitor, finally connecting to the power input of the oscilloscope. Similarly, the negative terminal was connected to the remaining terminal of the inductor and capacitor and connected to the negative terminal of the oscilloscope, grounding everything (see Figure \ref{fig:Process}).
+
+
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=245]{images/lab5_1.jpg}
+    \captionof{figure}{Final built inductor.}
+    \label{fig:inductor}
+    \medskip
 \endgroup
 
 \begingroup
+\medskip
     \centering
     %width=\columnwidth
     \includegraphics[width=245]{images/lab5_2.jpg}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
-\endgroup
-
-\begingroup
-    \centering
-    %width=\columnwidth
-    \includegraphics[width=245]{images/lab5_1.jpg}
-    \captionof{figure}{Adfvdfvfdvdvfdv}
-    \label{fig:HPF}
-\endgroup
-
-\begingroup
+    \captionof{figure}{Connecting the built inductor to the parallel tank circuit.}
+    \label{fig:Process}
     \medskip
+\endgroup
+
+\section{Results}
+
+\noindent To carry out the experiment and determine the $F_{r}$, the output voltage from the AC functiong generator was set to a constant $1V$. Then, beginnining at 5k Hz, the input frequency of the signal was incremented and the output voltage read by the oscilloscope was recorded, producing the data seen in Figure \ref{fig:table}. Although, theoretically, the output voltage is to be equivalent to the input voltage at resonance frequency, the data produced showed a clear increase and decrease in gain (the ratio of output voltage to input voltage. 
+
+
+\begingroup
     \centering
+    \medskip
     \def\arraystretch{1.5}
     \begin{tabular}{cc}
     \hline
@@ -266,58 +280,82 @@ C \propto \frac{1}{E}
 
     \hline
     \end{tabular}
-    \captionof{figure}{Tabulation of the gain against varied frequency of the input voltage (Hz) at max capacitance for LPF}
-    \label{fig:tableLPF}
+    \captionof{figure}{Tabulation of the gain against varied frequency of the input voltage (Hz) for a parallel tank circuit}
+    \label{fig:table}
     \medskip
 \endgroup
 
-\section{Building the Capacitor}
+\noindent Figure \ref{fig:graph} graphs the data found in the table, elucidating the relationship between frequency and gain (or impedance). Clearly, at lower frequencies the inductor has a greater effect of drawing on the current, as most of the impedance comes from the capacitor. At higher frequencies, the capacitor draws on the current and only the inductor provides impedance. 
 
-\noindent A capacitor is simply two metal plates with an insulating material (dielectric) in between; it can be made variable by varying the effective area of the plates or distance between plates. Thus, this lab used two pieces aluminum foil with a piece of paper in between. It was designed so that the the top piece of aluminum was capable of sliding up or down the bottom piece to increase or decrease the area and thus the capacitance. \\
+\noindent As highlighted in Figure \ref{fig:graph}, the resonance frequency was determined to be at approximately \textbf{14,400 Hz}.
 
-\noindent A piece of aluminum foil, slightly smaller than the size of an A4 paper, was taped to an A4 paper. One end of a multi-core wire was stripped and spread out across the aluminium piece to increase surface area, completing the first component. This process was repeated to produce an identical second component. The first component was wrapped around a PVC pipe, with the aluminum facing the inside. The second component was loosely taped around the first piece, with the aluminum facing inwards. As a result, a variable capacitor was made, shown in Figures \ref{fig:mincap} and \ref{fig:maxcap}. The two black cables running act as the two terminals of the capacitor.
-
-
-\section{Building the High-Pass and Low-Pass Filter Circuits}
-
-\noindent Figures \ref{fig:HPF} and \ref{fig:LPF} show the circuit schematic for the produced HPF and LPF circuits. Furthermore, as a more practical representation, Figure \ref{fig:cad} approximately shows how the LPF circuit was implemented. 
-
-
-
-\noindent To build the LPF circuit, a BNC splitter was attached to the AC power supply. One of the outputs was connected directly to the oscilloscope, to visualize the power being supplied to the circuitry. The other output was connected directly to the resistor, which was connected in parallel with the capacitor. The power line of the circuit was finally connected to the oscilloscope, displaying the output voltage of the circuit. The LPF circuit operates on the principal that capacitors are reactive devices, acting as high resistance components to low frequency signals; therefore, low frequency signals pass almost directly to the oscilloscope, but a high frequency signal results in a much lower voltage output (see Figure \ref{fig:falstad1}).
-
-
-
-
-\noindent Similarly, to build the HPF circuit, the BNC splitter was utilized again to visualize input and output voltage. This time the capacitor was connected in series with the resistor. In this case, because capacitors act as high resistance towards low-frequency signals, only the high-frequency signals pass through the capacitor and thus reach the oscilloscope (see Figure \ref{fig:falstad2}.
-
-
-
-
-\section{Results}
-
-\noindent As briefly explained, varying the frequency of the input voltage affects the output signal. The relation between the output and the input signal can be meaningfully described using gain, which is the ratio between the output voltage and the input voltage. Figure \ref{fig:tableLPF} and \ref{fig:tableHPF} represent the gain at varied frequencies at maximum capacitance, when the area shared between the two foil sheets was maximized. For the experiment, a $1V$ input signal was provided to both the HPF and LPF circuits. Therefore, the calculation of gain was simplified to just the output signal, as $\frac{x}{1} = x$ \\
-
-\noindent The tables (see Figure \ref{fig:tableLPF} and \ref{fig:tableHPF}) support the claim that, for the HPF, as frequency increases the gain decreases. On the other hand, for the LPF, as frequency increases the gain increases. Furthermore, graphing the data (see Figure \ref{fig:graph1} and \ref{fig:graph2}) allows for visualizing the cutoff frequency of the two circuits. Cutoff frequency refers to the frequency at which the output signal is $\sqrt{\frac{1}{2}}$, approximately 0.707, of the input voltage within the passing band. The cutoff frequency is a tool used to label the boundary between the passband and stopband, therefore determining the operating range of the filtering circuit.\\
-
-
-
-\noindent Graphing the data resulted in obtaining a best fit curve for both the circuits (see Equations \ref{eq:fitLPF} and \ref{eq:fitHPF}). The two fits were then solved for a y-value of $\sqrt{\frac{1}{2}}$ to obtain the cut-off frequencies. 
-
+\noindent Using the gathered data, Equation \ref{eq:FR} was manipulated to produce the following equation:
 
 \begin{equation}
-y = -0.7 \times e^{-7.0 \times 10^{-4} \times x ^{1.07}}+0.7
-\label{eq:fitLPF}
+L=(\frac{1}{2\pi F_{r}})^2 \cdot \frac{1}{C}
+\label{eq:manipulateFR}
 \end{equation}
 
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=245]{images/lab5_7.png}
+    \captionof{figure}{Visual representation of the gain against frequency (Hz). The blue line depicts the resonance frequency, where the gain was at maximum}
+    \label{fig:graph}
+\endgroup
 
-\section{Conclusions}
+\noindent Replacing with known data, where $F_{r}$ is replaced with 14,400 Hz and C is replaced with 1.5 \mu F : 
 
-\noindent A capacitor was built using aluminum foil as the conducting material and paper as a dielectric. The capacitor was then used to build HPF and LPF circuits, where a $1V$ input signal was applied across both circuits. Varying the frequency of the input signal and measuring the output voltage allowed for the measurement of gain. Graphing this data and applying an exponential fit led to the cut-off frequency of the two filtering circuits. The cutoff frequency ($F_{r}$) for the LPF circuit was approximately $9982 Hz$ at maximum capacitance, resulting in a calculated value of 0.88 nF. On the other hand, the $F_{r}$ for the HPF circuit was approximately $11583 Hz$, resulting in a calculated value of 0.76 nF. When measured using a LCR meter, the maximum capacitance was 0.82 nF, falling within the calculated range. Similarly, the minimum capacitance was calculated to be approximately 0.46 nF and was measured to be 0.33 nF.\\
+\begin{equation}
+L=(\frac{1}{2\pi \cdot 14400})^2 \dot \frac{1}{1.5 \cdot 10^{-6}} = 0.081 mH
+\label{eq:manipulateFR}
+\end{equation}
 
-\noindent This experiment determined that manipulating the formula for cut-off frequency is a valid method to calculate an unknown capacitance; furthermore, this experiment may have been extended to similarly calculate the unknown resistance of a filtering circuit. The experiment also depicted how a given capacitor, when placed in a deliberate way, filtered different frequencies, resulting in cutoff frequencies in a similar region. Therefore, this quality could be exploited to merge a HPF and LPF circuit to produce a band pass filter (BPF), which would allow for a very narrow band of frequencies to pass through. BPF are crucial to wireless communications, where transmitters are allocated a certain frequency range. Thus, producing an output signal within a certain band assures that the communication does not interfere with other transmitters with their alloted frequency bands.
+\noindent The calculation led to an experimentally determined value of 0.081 milliHenries (mH). The inductance of the inductor was also measured with an LCR meter and was found to be 0.083 mH; hence, the experimental derivation of the unknown inductance was valid and a good approximation of the actual value
+
+\noindent Figure \ref{fig:25khz} (25 kHz), \ref{fig:14khz} (14 kHz), \ref{fig:5khz} (5 kHz) all depict the varying amplitudes as a result of varying frequencies. Figure \ref{fig:14khz} (14 kHz) is the closest representation of the gain at resonance frequency, and it is clear that the output voltage, and thus the gain, is at its highest. On the other hand, Figure \ref{fig:25khz} and Figure \ref{fig:5khz} show the amplitudes at either ends of the resonance frequency peak seen in Figure \ref{fig:graph} and thus have a lower amplitude.
+
+\begingroup
+    \centering
+    \medskip
+    %width=\columnwidth
+    \includegraphics[width=220]{images/lab5_5.jpg}
+    \captionof{figure}{The output voltage at 25 kHz input of the AC function generator}
+    \label{fig:25khz}
+    \medskip
+\endgroup
+
+\begingroup
+    \centering
+    %width=\columnwidth
+    \includegraphics[width=220]{images/lab5_4.jpg}
+    \captionof{figure}{The output voltage at 14 kHz input of the AC function generator}
+    \label{fig:14khz}
+\endgroup
 
 
+\begingroup
+    \centering
+    %width=\columnwidth
+    \includegraphics[width=220]{images/lab5_3.jpg}
+    \captionof{figure}{The output voltage at 5 kHz input of the AC function generator}
+    \label{fig:5khz}
+\endgroup
+
+
+\section{Conclusion} 
+
+\noindent An inductor was built by using copper wire and PVC pipe. The built inductor was connected in parallel with a capacitor to form a simple LC circuit, also known as parallel tank circuit. A $1V$ input signal was applied across the circuit. Varying the frequency of the input signal and measuring the output voltage allowed for the measurement of gain. Gain of the built LC circuit changes based on the impedance of the $1.5uF$ capacitor and inductor built. When gain data was plotted, the resonant frequency was determined to be 14400 Hz by measuring the frequency value that gives the highest gain. Further calculations based on the measured resonant frequency showed that the inductance of the inductor is $0.081mH$. On the other hand, measuring the inductance of the inductor with an LCR meter gave an inductance value of $0.083mH$. The results gathered are practically same values and there is only 2\% difference between the theoretical result and the experimental result.\\
+
+\noindent LC circuits can be used tuning for certain frequencies as they majorly block the whole spectrum except the resonant frequency. Therefore, they can be used in AM/FM radios to tune to a specific frequency and only listen signals coming at the particular frequency which would be matching the resonant frequency. By that way, more clear audio can be obtained by amplifying only the resonant frequency. They can be used in any other communication devices phone and satellites to only detect certain signals. Additionally, LC circuits can be used to generate certain frequencies. Therefore, they can also be used as radio wave transmitters.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%please include information about the applications of 
+%a "tank circuit in parallel" or "parallel tank circuit"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 
 
 %\appendices
